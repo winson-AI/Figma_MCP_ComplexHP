@@ -1,0 +1,51 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="300dp"
+    android:viewportWidth="400"
+    android:viewportHeight="300">
+    
+    <!-- Background -->
+    <path
+        android:fillColor="#F1F3F4"
+        android:pathData="M0,0h400v300h-400z" />
+    
+    <!-- Main illustration elements -->
+    <path
+        android:fillColor="#1A73E8"
+        android:pathData="M100,80 Q120,60 140,80 L140,120 Q120,140 100,120 Z" />
+    
+    <path
+        android:fillColor="#34A853"
+        android:pathData="M160,100 Q180,80 200,100 L200,140 Q180,160 160,140 Z" />
+    
+    <path
+        android:fillColor="#FBBC04"
+        android:pathData="M220,90 Q240,70 260,90 L260,130 Q240,150 220,130 Z" />
+    
+    <path
+        android:fillColor="#EA4335"
+        android:pathData="M280,110 Q300,90 320,110 L320,150 Q300,170 280,150 Z" />
+    
+    <!-- Abstract shapes -->
+    <circle
+        android:fillColor="#1A73E8"
+        android:fillAlpha="0.3"
+        cx="150"
+        cy="200"
+        r="30" />
+    
+    <circle
+        android:fillColor="#34A853"
+        android:fillAlpha="0.3"
+        cx="250"
+        cy="180"
+        r="25" />
+    
+    <circle
+        android:fillColor="#FBBC04"
+        android:fillAlpha="0.3"
+        cx="320"
+        cy="220"
+        r="20" />
+    
+</vector>
