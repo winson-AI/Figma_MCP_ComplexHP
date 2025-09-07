@@ -48,22 +48,21 @@ fun BankingHomePage() {
         ) {
             // Status Bar
             StatusBar()
-
+            Spacer(modifier = Modifier.height(10.dp))
+            // Header Section
+            HeaderSection()
             // Main Content
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f)
+                    .offset(y=30.dp)
                     .background(
                         Color.White,
                         RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
                     )
                     .padding(horizontal = 24.dp, vertical = 24.dp)
             ) {
-                // Header Section
-                HeaderSection()
-
-                Spacer(modifier = Modifier.height(32.dp))
 
                 // Bank Card
                 BankCardSection()
@@ -155,14 +154,14 @@ fun HeaderSection() {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 22.dp),
+            .padding(horizontal = 24.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         // Avatar and Greeting
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             // Avatar
             Image(
@@ -173,14 +172,14 @@ fun HeaderSection() {
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop
             )
-
             // Greeting
             Text(
                 text = "Hi, Push Puttichai",
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color.Black,
-                fontFamily = FontFamily.SansSerif
+                fontFamily = FontFamily.SansSerif,
+                modifier = Modifier.offset(y = 5.dp),
             )
         }
 
@@ -222,66 +221,61 @@ fun BankCardSection() {
         modifier = Modifier
             .fillMaxWidth()
             .height(221.dp)
+
     ) {
         // Background layers with exact Figma positioning
         Box(
             modifier = Modifier
-                .fillMaxWidth(0.8f)  // 80% width (approximating Figma's left/right margins)
-                .fillMaxHeight(0.74f)  // 74% height (bottom layer positioning)
-                .background(
-                    Color(0xFF5655B9),  // Primary/2 color from Figma
-                    RoundedCornerShape(10.dp)
-                )
-                .align(Alignment.BottomCenter)
-        )
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth(0.88f)  // 88% width (Figma inset positioning)
-                .fillMaxHeight(0.96f)  // 96% height (top layer positioning)
-                .background(
-                    Color(0xFFFF4267),  // Semantic/1 color from Figma
-                    RoundedCornerShape(10.dp)
-                )
-                .align(Alignment.TopCenter)
-        )
-
-        // Main card with exact Figma positioning
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Color(0xFF3629B7),  // Primary/1 color
-                    RoundedCornerShape(10.dp)
-                )
+                .width(327.dp)                     // 固定宽度
+                .align(Alignment.Center)           // 水平 + 垂直均居中
         ) {
-            // Card content with absolute positioning to match Figma
-            Box(modifier = Modifier.fillMaxSize()) {
-                // Card background (base layer)
-                Box(
-                    modifier = Modifier.fillMaxSize()
-                )
-
-                // Shape overlays (masked elements from Figma)
-                // Note: In Compose, we simulate these with additional Box elements
+            Box(
+                modifier = Modifier
+                    .size(261.dp, 164.dp)
+                    .offset(y=57.dp)
+                    .background(
+                        Color(0xFF5655B9),// Semantic/1 color from Figma
+                        RoundedCornerShape(10.dp)
+                    )
+                    .align(Alignment.TopCenter)
+            )
+            Box(
+                modifier = Modifier
+                    .size(287.dp, 178.dp)
+                    .offset(y=35.dp)
+                    .background(
+                        Color(0xFFFF4267),  // Semantic/1 color from Figma
+                        RoundedCornerShape(10.dp)
+                    )
+                    .align(Alignment.TopCenter)
+            )
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(204.dp)
+                    .background(
+                        Color(0xFF1573FF),  // Semantic/1 color from Figma
+                        RoundedCornerShape(10.dp)
+                    )
+                    .clip(RoundedCornerShape(10.dp))
+                    .align(Alignment.TopCenter)
+            ) {
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(1.1233f)  // -12.33% width extension
-                        .fillMaxHeight(1.5793f)  // -57.93% height extension
-                        .background(Color(0xFF5655B9).copy(alpha = 0.3f))  // Semi-transparent overlay
-                        .align(Alignment.TopStart)
+                        .offset(x = (-130).dp, y = (-25).dp)
+                        .size(350.dp)          // 圆的直径，按需要改
+                        .aspectRatio(1f)
+                        .background(Color(0xFF1E1671), CircleShape)// 左上角偏移
                 )
 
+                /* 圆2 */
                 Box(
                     modifier = Modifier
-                        .fillMaxWidth(1.2936f)  // -29.36% width extension
-                        .fillMaxHeight(1.3738f)  // 37.38% height extension
-                        .background(Color(0xFFFF4267).copy(alpha = 0.2f))  // Semi-transparent overlay
-                        .align(Alignment.TopStart)
+                        .offset(x = 223.dp, y = (-59).dp)
+                        .size(190.dp)          // 圆的直径，按需要改
+                        .aspectRatio(1f)
+                        .background(Color(0xFF4EB4FF), CircleShape)// 右下角偏移
                 )
-
-                // Card content with exact Figma positioning
-                // Name - inset-[10.5%_48.33%_69.93%_6.25%]
                 Text(
                     text = "John Smith",
                     fontSize = 24.sp,
@@ -292,6 +286,7 @@ fun BankCardSection() {
                         .align(Alignment.TopStart)
                         .padding(start = 34.dp, top = 23.dp)  // 10.5% left, 6.25% top
                 )
+
 
                 // Card type - inset-[45.5%_50.02%_45.8%_6.25%]
                 Text(
@@ -311,7 +306,7 @@ fun BankCardSection() {
                     contentDescription = "Visa",
                     modifier = Modifier
                         .align(Alignment.TopStart)
-                        .padding(start = 26.dp, top = 176.dp)  // 79.35% top, 8.13% left
+                        .padding(start = 253.dp, top = 161.dp)  // 79.35% top, 8.13% left
                         .size(40.dp, 16.dp)
                 )
 
@@ -330,6 +325,28 @@ fun BankCardSection() {
                         color = Color.White,
                         fontFamily = FontFamily.SansSerif
                     )
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        repeat(4) {
+                            Box(
+                                modifier = Modifier
+                                    .size(6.dp)
+                                    .clip(RoundedCornerShape(3.dp))
+                                    .background(Color.White)
+                            )
+                        }
+                    }
+
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        repeat(4) {
+                            Box(
+                                modifier = Modifier
+                                    .size(6.dp)
+                                    .clip(RoundedCornerShape(3.dp))
+                                    .background(Color.White)
+                            )
+                        }
+                    }
+
                     Text(
                         text = "9018",
                         fontSize = 16.sp,
@@ -337,14 +354,8 @@ fun BankCardSection() {
                         color = Color.White,
                         fontFamily = FontFamily.SansSerif
                     )
-                    Image(
-                        painter = painterResource(Res.drawable.ic_card_hidden_numbers),
-                        contentDescription = "Hidden",
-                        modifier = Modifier.size(16.dp)
-                    )
                 }
 
-                // Balance - inset-[73.5%_60.19%_11.28%_6.25%]
                 Text(
                     text = "$3.469.52",
                     fontSize = 20.sp,
@@ -353,7 +364,7 @@ fun BankCardSection() {
                     fontFamily = FontFamily.SansSerif,
                     modifier = Modifier
                         .align(Alignment.TopStart)
-                        .padding(start = 196.dp, top = 163.dp)  // 73.5% top, 60.19% left
+                        .padding(start = 34.dp, top = 163.dp)  // 73.5% top, 60.19% left
                 )
             }
         }
@@ -481,34 +492,12 @@ fun TabBar() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            // More tab
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            ) {
-                Image(
-                    painter = painterResource(Res.drawable.ic_tab_more),
-                    contentDescription = "More",
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "More",
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color(0xFF979797),
-                    fontFamily = FontFamily.SansSerif
-                )
-            }
-
-            // Home tab (active)
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
+            Row(
                 modifier = Modifier
-                    .background(Color(0xFF3629B7), RoundedCornerShape(20.dp))
-                    .padding(horizontal = 20.dp, vertical = 8.dp)
+                    .size(width = 92.dp, height = 36.dp)
+                    .background(Color(0xFF3629B7), RoundedCornerShape(20.dp)),   // 背景色可换
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
             ) {
                 Image(
                     painter = painterResource(Res.drawable.ic_tab_home),
@@ -516,7 +505,7 @@ fun TabBar() {
                     modifier = Modifier.size(24.dp),
                     colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(Color.White)
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+
                 Text(
                     text = "Home",
                     fontSize = 12.sp,
@@ -526,47 +515,23 @@ fun TabBar() {
                 )
             }
 
-            // Search tab
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            ) {
-                Image(
-                    painter = painterResource(Res.drawable.ic_tab_search),
-                    contentDescription = "Search",
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Search",
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color(0xFF979797),
-                    fontFamily = FontFamily.SansSerif
-                )
-            }
+            Image(
+                painter = painterResource(Res.drawable.ic_tab_search_alt),
+                contentDescription = "Search Alt",
+                modifier = Modifier.size(24.dp)
+            )
 
-            // Alternative Search tab
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            ) {
-                Image(
-                    painter = painterResource(Res.drawable.ic_tab_search_alt),
-                    contentDescription = "Search Alt",
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = "Discover",
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Normal,
-                    color = Color(0xFF979797),
-                    fontFamily = FontFamily.SansSerif
-                )
-            }
+            Image(
+                painter = painterResource(Res.drawable.ic_tab_mail),
+                contentDescription = "mail",
+                modifier = Modifier.size(24.dp)
+            )
+
+            Image(
+                painter = painterResource(Res.drawable.ic_tab_more),
+                contentDescription = "More",
+                modifier = Modifier.size(24.dp)
+            )
         }
 
         // Home indicator
